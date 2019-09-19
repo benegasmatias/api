@@ -11,10 +11,12 @@ use Cake\ORM\Entity;
  * @property int $type_consumers_id
  * @property int $sex_id
  * @property int $type_people_id
+ * @property int $department
  *
  * @property \App\Model\Entity\TypeConsumer $type_consumer
  * @property \App\Model\Entity\Sex $sex
  * @property \App\Model\Entity\TypePeople $type_people
+ * @property \App\Model\Entity\Department $departmentt
  */
 class Client extends Entity
 {
@@ -29,11 +31,17 @@ class Client extends Entity
      */
     protected $_accessible = [
         'name_client' => true,
-        'type_consumers_id' => true,
+        'client_dni'=> true,
+        'client_apellido'=>true,
+        'client_email'=>true,
+        'client_celular'=>true,
+        'client_fijo'=>true,
+        'client_direccion'=>true,
+        'fecha'=>true,
+        'type_consumer_id' => true,
         'sex_id' => true,
         'type_people_id' => true,
-        'type_consumer' => true,
-        'sex' => true,
-        'type_people' => true
+        'department_id'=> true,
+
     ];
 }

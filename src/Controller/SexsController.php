@@ -40,7 +40,10 @@ class SexsController extends AppController
             'contain' => ['Clients']
         ]);
 
-        $this->set('sex', $sex);
+        $this->set([
+            'sex' => $sex,
+            '_serialize' => ['sex']
+        ]);
     }
 
     /**
@@ -53,14 +56,17 @@ class SexsController extends AppController
         $sex = $this->Sexs->newEntity();
         if ($this->request->is('post')) {
             $sex = $this->Sexs->patchEntity($sex, $this->request->getData());
+            debug(sex);
             if ($this->Sexs->save($sex)) {
-                $this->Flash->success(__('The sex has been saved.'));
+                $message='saved';
 
-                return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The sex could not be saved. Please, try again.'));
+            else $message='error';
         }
-        $this->set(compact('sex'));
+        $this->set([
+            'message' => $message,
+            '_serialize' => ['message']
+        ]);
     }
 
     /**

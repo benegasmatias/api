@@ -39,15 +39,20 @@ class ClientsTable extends Table
         $this->setPrimaryKey('id_client');
 
         $this->belongsTo('TypeConsumers', [
-            'foreignKey' => 'type_consumers_id',
+            'foreignKey' => 'type_consumer_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Sexes', [
+        $this->belongsTo('Sexs', [
             'foreignKey' => 'sex_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('TypePeoples', [
+        $this->belongsTo('TypePersons', [
             'foreignKey' => 'type_people_id',
+            'joinType' => 'INNER'
+        ]);
+
+        $this->belongsTo('Departments', [
+            'foreignKey' => 'department_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -82,8 +87,9 @@ class ClientsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['type_consumers_id'], 'TypeConsumers'));
-        $rules->add($rules->existsIn(['sex_id'], 'Sexes'));
-        $rules->add($rules->existsIn(['type_people_id'], 'TypePeoples'));
+        $rules->add($rules->existsIn(['sex_id'], 'Sexs'));
+        $rules->add($rules->existsIn(['type_people_id'], 'TypePersons'));
+        $rules->add($rules->existsIn(['department_id'], 'Departments'));
 
         return $rules;
     }

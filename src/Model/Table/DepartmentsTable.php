@@ -31,8 +31,8 @@ class DepartmentsTable extends Table
         parent::initialize($config);
 
         $this->setTable('departments');
-        $this->setDisplayField('id_location');
-        $this->setPrimaryKey('id_location');
+        $this->setDisplayField('id_departmet');
+        $this->setPrimaryKey('id_department');
     }
 
     /**
@@ -44,19 +44,19 @@ class DepartmentsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id_location')
-            ->allowEmptyString('id_location', null, 'create');
+            ->integer('id_department')
+            ->allowEmptyString('id_department', null, 'create');
 
         $validator
-            ->scalar('nombre_ locations')
-            ->maxLength('nombre_ locations', 50)
-            ->requirePresence('nombre_ locations', 'create')
-            ->notEmptyString('nombre_ locations');
+            ->scalar('nombre')
+            ->maxLength('nombre', 50)
+            ->requirePresence('nombre', 'create')
+            ->notEmptyString('nombre');
 
         $validator
-            ->integer('codigo_postal_ locations')
-            ->requirePresence('codigo_postal_ locations', 'create')
-            ->notEmptyString('codigo_postal_ locations');
+            ->integer('codigo_postal')
+            ->requirePresence('codigo_postal', 'create')
+            ->notEmptyString('codigo_postal');
 
         return $validator;
     }
